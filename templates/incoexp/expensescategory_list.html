@@ -1,0 +1,15 @@
+<!-- incomecategory_list.html -->
+
+{% extends 'index.html' %}
+
+{% block content %}
+  <h2>Expense Categories</h2>
+
+  <ul>
+    {% for category in expense_categories %}
+      <li>{{ category.name }}</li>
+    {% endfor %}
+  </ul>
+
+  <a href="{% url 'expensecategory-create' %}">Create New Category</a>
+{% endblock %}

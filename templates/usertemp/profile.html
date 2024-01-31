@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+{% extends 'index.html' %}
+<html lang="en">
+
+<body>
+    {% block content %}
+    <style>
+        *{
+            font-family: 'poppings', sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+    
+        .container {
+            width: 500px;
+            margin: 0 auto;
+            border: 2px solid skyblue;
+            border-radius: 10px;
+            height: 95vh;
+            margin-top: 9px;
+            padding: 10px;
+        }
+    
+        .conhead {
+            margin-top: 2px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    
+        .pimg img {
+            border: 1px solid skyblue;
+            border-radius: 50%;
+            width: 102px;
+            height: 102px;
+            margin-bottom: 10px;
+        }
+
+        .mark i{
+            font-weight: bold;
+            color: darkgreen;
+            font-size: 30px;
+            position: absolute;
+            right: 44%;
+            top: 18.5%;
+        }
+
+        .name {
+            text-align: center;
+            margin-bottom: 28px;
+        }
+
+        .nam {
+            font-size: 25px;
+            font-weight: bold;
+        }
+
+        .name p {
+            font-size: 17px;
+        }
+
+        .params {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .par {
+            margin: 10px 20px;
+            display: block;
+        }
+
+        .par p {
+            font-weight: 600;
+        }
+
+        .par p1 {
+            margin-left: 12px;
+            font-weight: bolder;
+            font-size: larger;
+            padding-left: 10px;
+        }
+
+        section {
+            margin: 10px 0 30px 0;
+            text-align: center;
+        }
+
+        section p{
+            font-size: 17px;
+        }
+
+      
+
+        input {
+            margin-top: 20px;
+            font-weight: bold;
+            border: 3px solid skyblue;
+            padding: 5px 30px;
+            border-radius: 15px;
+            background-color: black;
+            cursor: pointer;
+            color: white;
+        }
+
+        .boton {
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .mt-2 {
+            margin-top: 0.5rem!important;
+            width: 80%;
+            margin: auto;
+            text-align: center;
+            font-size: 18px;
+        }
+
+
+    </style>
+
+    <div class="container">
+
+        {% if messages  %}
+        <div class="messages mt-2">
+            {% for message in messages %}
+            {% if message.tags %}
+            <div class="alert {{message.tags}}" role="alert">
+              {{message}}
+            </div>
+            {% endif %}
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        <div class="conhead">
+            <div class="pimg">
+                <img src="{{profile_info.profile_image_url.url}}" width="200px" height="200px" alt="Profile Image">
+            </div>
+        </div>
+        
+    
+        <div class="name">
+            <span class="nam">{{profile_info.fullname}}</span> <br>
+            <span class="nam">{{user.username}}</span>
+            <p>{{user.email}}</p>
+            <p>Address: {{profile_info.address}}</p>
+            <p>DOB: {{profile_info.dob}}</p>
+        </div>
+        
+        
+        <div class="boton">
+            <a href="{% url 'updateprofile' %}"><input type="button" class="btn btn-success btn-sm" value="Update Profile">
+            <a href="{% url 'dashboard' %}"> <input type="button" class="btn btn-primary btn-sm" value="Dashboard">
+        </div>
+            
+    </div>
+      
+</body>
+{% endblock %}
+</html>

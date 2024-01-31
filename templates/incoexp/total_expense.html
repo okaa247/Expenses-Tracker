@@ -1,0 +1,52 @@
+{% extends 'index.html' %}
+{% load myfilters %}
+
+{% block content %}
+
+<div class="container">
+    <h1>Total Expenses by Category</h1>
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Category</th>
+                <th>Total Expense</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in total_expense_by_category %}
+                <tr>
+                    <td>{{ item.name }}</td>
+                    <td>{{ item.total_expense }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <h2>Total Expenses: {{ sum_total_expense | format_hundreds}}</h2>
+
+    <h1>Total Income by Category</h1>
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Category</th>
+                <th>Total Income</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in total_income_by_category %}
+                <tr>
+                    <td>{{ item.name }}</td>
+                    <td>{{ item.total_income }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <h2>Total Income: {{ sum_total_income | format_hundreds}}</h2>
+
+    <h1>Total Expenses Percentage in Relation to Total Income</h1>
+    <p>{{ total_expense_percentage | floatformat:2 }}%</p>
+</div>
+{% endblock %}

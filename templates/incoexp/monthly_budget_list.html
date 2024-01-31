@@ -1,0 +1,26 @@
+<!-- monthly_budget_list.html -->
+{% extends 'index.html' %}
+
+{% block content %}
+  <h2>Monthly Budget List</h2>
+
+  <!-- Display monthly budgets -->
+  <table border="1">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Amount</th>
+        <th>Month</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for budget in monthly_budgets %}
+        <tr>
+          <td>{{ budget.name }}</td>
+          <td>${{ budget.amount }}</td>
+          <td>{{ budget.month|date:"F Y" }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

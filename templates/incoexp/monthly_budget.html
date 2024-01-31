@@ -1,0 +1,44 @@
+<!-- monthly_budget.html -->
+{% extends 'index.html' %}
+
+{% block content %}
+  <h2>Monthly Budgets</h2>
+
+  {% if error %}
+    <p style="color: red;">{{ error }}</p>
+  {% endif %}
+
+  <!-- Display monthly budgets -->
+  <table border="1">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Amount</th>
+        <th>Month</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for budget in monthly_budgets %}
+        <tr>
+          <td>{{ budget.name }}</td>
+          <td>${{ budget.amount }}</td>
+          <td>{{ budget.month|date:"F Y" }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+ <!-- Add new budget form -->
+<h3>Add New Budget</h3>
+<form method="post" action="{% url 'monthly-budget' %}">
+  {% csrf_token %}
+  <label for="name">Budget Name:</label>
+  <input type="text" name="name" required><br>
+  <label for="amount">Budget Amount:</label>
+  <input type="number" name="amount" step="0.01" required><br>
+  <label for="month">Month (YYYY-MM):</label>
+  <input type="text" name="month" pattern="\d{4}-\d{2}" title="Enter a valid month in YYYY-MM format" required><br>
+  <button type="submit">Add Budget</button>
+</form>
+
+{% endblock %}

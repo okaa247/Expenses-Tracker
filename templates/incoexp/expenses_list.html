@@ -1,0 +1,28 @@
+<!-- expenses_list.html -->
+
+{% extends 'index.html' %}
+
+{% block content %}
+<div class="container">
+
+  <!-- Outer Row -->
+  
+
+  <h2>Expenses List</h2>
+
+  {% if expenses_list %}
+    <ul>
+      {% for expenses in expenses_list %}
+        <li>
+          <strong>{{ expenses.description }}</strong> - {{ expenses.amount }} on {{ expenses.date }}
+          {{ expenses.expensetype.name }}
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No expenses record found.</p>
+  {% endif %}
+  </div>
+
+
+{% endblock %}

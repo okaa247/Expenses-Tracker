@@ -1,0 +1,23 @@
+<!-- income_list.html -->
+
+{% extends 'index.html' %}
+
+{% block content %}
+<div class="container">
+  <h2>Income List</h2>
+
+  {% if income_list %}
+    <ul>
+      {% for income in income_list %}
+        <li>
+          <strong>{{ income.description }}</strong> - {{ income.amount }} on {{ income.date }}
+          {{ income.incometype.name }}
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No income records found.</p>
+  {% endif %}
+
+</div>
+{% endblock %}

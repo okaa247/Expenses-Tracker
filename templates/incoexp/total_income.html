@@ -1,0 +1,30 @@
+{% extends 'index.html' %}
+{% load myfilters %}
+
+{% block content %}
+<div class="container">
+  <h2>Total Income by Category</h2>
+
+  <table border="1">
+    <thead>
+      <tr>
+        <th>Category</th>
+        <th>Total Income</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for category in total_income_by_category %}
+        <tr>
+          <td>{{ category.name }}</td>
+          <td>{{ category.total_income }}</td>
+        </tr>
+      {% endfor %}
+      <tr>
+        <td><strong>Total</strong></td>
+        <td><strong>{{ sum_total_income | format_hundreds }}</strong></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+{% endblock %}

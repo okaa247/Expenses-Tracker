@@ -1,0 +1,20 @@
+<!-- incomecategory_create.html -->
+
+{% extends 'index.html' %}
+
+{% block content %}
+  <h2>Create Expense Category</h2>
+
+  {% if error %}
+    <p style="color: red;">{{ error }}</p>
+  {% endif %}
+
+  <form method="post" action="{% url 'expensecategory-create' %}">
+    {% csrf_token %}
+    <label for="name">Category Name:</label>
+    <input type="text" name="name" required>
+    <button type="submit">Create Category</button>
+  </form>
+  
+  <a href="{% url 'expensescategory-list' %}">Back to Categories List</a>
+{% endblock %}
